@@ -3,9 +3,13 @@ import {Row, Col, Form, Input, Button} from 'antd'
 import { Link } from 'react-router-dom'
 // eslint-disable-next-line no-unused-vars
 import './login.css'
+import { useDispatch } from 'react-redux'
+import { userLogin } from '../redux/actions/userActions'
 function Login() {
+    const dispatch = useDispatch()
     function login(values) {
         console.log(values)
+        dispatch(userLogin(values))
     }
     return (
         <div>

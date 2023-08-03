@@ -1,10 +1,14 @@
 const express = require("express")
 const dotenv = require("dotenv")
 const connectToDatabase = require("./config/db")
+const usersRoute = require("./routes/usersRoute")
+
 
 dotenv.config()
 
 const app = express()
+app.use(express.json())
+app.use('/api/users/', usersRoute)
 
 app.get("/", (req, res) => {
     res.send("This is from server")

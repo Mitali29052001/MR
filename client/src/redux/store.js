@@ -3,11 +3,12 @@ import { createStore, applyMiddleware, combineReducers} from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 // eslint-disable-next-line no-unused-vars
 import thunk from 'redux-thunk' 
-
 import { usersReducer} from './reducers/userReducer'
+import alertsReducer from './reducers/alertsReducer'
 const rootReducer = combineReducers ({
     // eslint-disable-next-line no-undef
-    usersReducer: usersReducer
+    usersReducer: usersReducer,
+    alertsReducer: alertsReducer
 })
 const composeEnhancers = composeWithDevTools({
     // Specify here name, actionsBlacklist, actionsCreators and other options
