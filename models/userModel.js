@@ -2,13 +2,11 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
 
-    firstname: { type: String, required: true,  unique: false,},
-    lastname: { type: String,  required: true, unique: false},
-       
-       
+    firstname: { type: String, required: true,  unique: false},
+    lastname: { type: String,  required: true, unique: false},   
     username : {type : String, required: true} , 
     emailid: {type: String, required: true,  unique: true},
-    password : {type : String, required: true} , 
+    password : {type : String, required: true}, 
     privateAccount : {type : Boolean, required: false , default: false} ,
 
     followers : [{type : mongoose.Schema.Types.ObjectId, req : 'users'}] ,

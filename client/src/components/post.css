@@ -1,0 +1,13 @@
+.profilepic1{
+        padding-left: 15px;
+        padding-right: 10px;
+        font-weight: bold;
+        font-size:25px !important;
+        background-color: grey;
+        border-radius: 50%;
+        height:40px;
+        width:40px;
+        color: white;
+        text-align:center !important;
+        
+}

@@ -5,10 +5,12 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk' 
 import { usersReducer} from './reducers/userReducer'
 import alertsReducer from './reducers/alertsReducer'
+import { postsReducer } from './reducers/postsReducer'
 const rootReducer = combineReducers ({
     // eslint-disable-next-line no-undef
     usersReducer: usersReducer,
-    alertsReducer: alertsReducer
+    alertsReducer: alertsReducer,
+    postsReducer: postsReducer
 })
 const composeEnhancers = composeWithDevTools({
     // Specify here name, actionsBlacklist, actionsCreators and other options

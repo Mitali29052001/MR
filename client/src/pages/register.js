@@ -1,11 +1,16 @@
 import React from 'react'
 import {Row, Col, Form, Input, Button} from 'antd'
 import { Link } from 'react-router-dom'
+import {useDispatch} from 'react-redux'
 // eslint-disable-next-line no-unused-vars
 import './register.css'
+import { userRegister } from '../redux/actions/userActions'
 function Register() {
+    const dispatch = useDispatch()
     function register(values) {
         console.log(values)
+        delete values.cpassword
+        dispatch(userRegister(values))
     }
     return (
         <div>
@@ -14,22 +19,22 @@ function Register() {
                     <Form layout='vertical' className='bs1 p-3' onFinish={register}>
                         <h3>Register</h3>
                         <hr />
-                        <Form.Item label="Firstname" name="Firstname" rules={[{ require: true }]}>
+                        <Form.Item label="firstname" name="firstname" rules={[{ require: true }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item label="Lastname" name="Lastname" rules={[{ require: true }]}>
+                        <Form.Item label="lastname" name="lastname" rules={[{ require: true }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item label="Username" name="Username" rules={[{ require: true }]}>
+                        <Form.Item label="username" name="username" rules={[{ require: true }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item label="Email id" name="Email id" rules={[{ require: true }]}>
+                        <Form.Item label="emailid" name="emailid" rules={[{ require: true }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item label="Password" name="Password" rules={[{ require: true }]}>
+                        <Form.Item label="password" name="password" rules={[{ require: true }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item label="Confirm Password" name="Confirm Password" rules={[{ require: true }]}>
+                        <Form.Item label="confirm password" name="cpassword" rules={[{ require: true }]}>
                             <Input />
                         </Form.Item>
                         <Button htmlType='Submit'>Register</Button>
