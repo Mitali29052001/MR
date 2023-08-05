@@ -27,3 +27,27 @@ router.get("/getallposts", async (req, res) => {
     return res.status(400).json(error);
   }
 });
+router.post("/likeorunlikepost", async (req, res) => {
+  try {
+    const post = await Post.findOne({ _id: req.body.postid });
+
+    var likes = post.likes;
+
+    if (likes.find((obj) => obj.user == req.body.userid)) {
+      const temp = likes.filter((obj) => obj.user.toString() !== req.body.userid
+      );
+
+      post.likes = temp;
+      await Post.updateOne({ _id: req.body.postid }, post);
+      res.send("Post unliked successfully");
+    } else {
+      likes.push({user: req.body.userid,});
+      post.likes = likes;
+      await Post.updateOne({ _id: req.body.postid }, post);
+      res.send("Post liked successfully");
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json(error);
+  }
+});

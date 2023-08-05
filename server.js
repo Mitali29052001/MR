@@ -1,7 +1,7 @@
 const express = require("express")
 const dotenv = require("dotenv")
 const connectToDatabase = require("./config/db")
-const usersRoute = require("./routes/usersRoute")
+const usersRoute = require("./routes/usersRoute.js")
 const postsRoute = require("./routes/postsRoute")
 
 

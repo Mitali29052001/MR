@@ -5,6 +5,7 @@ import {
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
+  LogoutOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme } from 'antd';
 import './default.css'
@@ -42,6 +43,9 @@ const Default = (props) => {
           <Menu.Item key="/profile" icon={<UploadOutlined />}>
             <Link to="/profile">Profile</Link>
           </Menu.Item>
+          <Menu.Item icon={<LogoutOutlined />}>
+            <Link onClick={()=>{localStorage.removeItem(('user'), window.location.reload)}}>Logout</Link>
+          </Menu.Item>
         </Menu>
       </Sider>
       <Layout>
@@ -58,7 +62,7 @@ const Default = (props) => {
             })
             }
             <h2>MR</h2>
-            <h4>User</h4>
+            <h4>{JSON.parse(localStorage.getItem('user')).username}</h4>
           </div>
         </Header>
         <Content

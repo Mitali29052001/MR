@@ -1,4 +1,7 @@
-const initialState = {}
+const initialState = {
+    loading:false,
+    likeorunlikeloading: false,
+}
 
 const alertsReducer = (state = initialState, action) => {
     switch (action.type){
@@ -6,8 +9,10 @@ const alertsReducer = (state = initialState, action) => {
             ...state,
             loading : action.payload
         } 
+        
         default:
             return state;
+            
     }
 }
 

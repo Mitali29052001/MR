@@ -22,6 +22,7 @@ export const addPost =(values)=>async dispatch=>{
 }
 
 export const getAllPosts =()=>async dispatch=>{
+    
     dispatch({type:'LOADING' , payload:true})
 
     try {
@@ -35,4 +36,21 @@ export const getAllPosts =()=>async dispatch=>{
         message.error('something went wrong')
     }
 
+}
+export const likeorunlikepost =(values)=>async dispatch=>{ 
+    values.userid = JSON.parse(localStorage.getItem('user'))._id.toString()
+   
+    dispatch({type:'LOADING', payload:true}) //we are using redux thunk, values receive from ui
+    try {
+        await axios.post('/api/posts/likeorunlikepost', values)
+        dispatch({type :'LOADING', payload:false})
+        message.success('Post liked successfully')
+        
+
+    } catch (error) {
+        console.log(error)
+        dispatch({type :'LOADING', payload:false})
+        message.error('Post unliked successfully')
+
+    }
 }

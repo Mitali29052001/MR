@@ -8,14 +8,14 @@ import profile from './pages/profile';
 import login from './pages/login';
 import register from './pages/register'
 // eslint-disable-next-line no-unused-vars
-import Default from './components/Default'
+
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getAllPosts } from './redux/actions/postAction';
 
 
 function App() {
-  const { loading , likeOrUnlikeLoading} = useSelector((state) => state.alertsReducer);
+  const { loading } = useSelector((state) => state.alertsReducer);
 
   const dispatch = useDispatch()
   useEffect(() => {
@@ -26,6 +26,9 @@ function App() {
   }, [])
   return (
     <div className="App">
+      {/* {loading && (<div className="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+        </div>)} */}
       <BrowserRouter>
       <Routes>
       <Route path='/' exact Component={Home}/>
