@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
 import { Button, Col, Row, Input } from 'antd';
-import moment from "moment"; 
+
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Default from "../components/Default";
+import "./AllUsers.css";
 import { followUser, getAllUsers } from "../redux/actions/userActions";
-const {TextArea} = Input
+const {TextArea} = Input;
 
 
 function AllUsers() {
@@ -40,7 +41,6 @@ function AllUsers() {
                                     <img src={user.profilePicUrl} />
                                 )}
                                 <Link>{user.username}</Link>
-                                <p>{moment(user.createdAt).format('MMM DD yyyy')}</p>
                                 <Button onclick={()=>{dispatch(followUser({currentUserId : currentUser._id, receiverUserId : user._id}))}}>Follow</Button>
                             </div>
                         </Col>

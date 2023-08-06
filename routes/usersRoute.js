@@ -30,4 +30,46 @@ router.post("/login", async(req, res) => {
     }
   
 });
+router.get("/getallusers", async(req, res) => {
+  
+    try {
+        const users = await User.find()
+        res.send(users)
+    } catch (error) {
+        console.log(error)
+        return res.status(400).json(error);
+    }
+
+});
+router.post("/followuser", async(req, res) =>{
+    const{currentUserId, receiverUserId} = req.body
+    try{
+        // current userdata , updating following
+        // fetching current user
+        var currentUser = await User.findOne({_id : currentUserId})
+        // pushing cuurent user id
+        var currentUserFollowing = currentUserId.currentUserFollowing
+        currentUserFollowing.push(receiverUserId)
+
+        // update current user
+        currentUser.following = currentUserFollowing
+        await User.updateOne({_id : currentUserId}, currentUser)
+
+        // receiver user data, updating followers
+        var receiverUser = await User.findOne({_id : receiverUserId})
+        // get current followers
+        var receiverUserFollowers = receiverUser.followers
+        receiverUserFollowers.push(currentUserId)
+
+        receiverUser.followers = receiverUserFollowers
+
+        await User.updateOne({_id : receiverUserId}, receiverUser)
+        res.send("Successfully Followed")
+    }
+    catch(error){
+        console.log(error)
+        return res.status(400).json({message:''});
+
+    }
+})
 module.exports = router;

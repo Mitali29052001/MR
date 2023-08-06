@@ -22,6 +22,7 @@ const composeEnhancers = composeWithDevTools({
     composeEnhancers(
       // eslint-disable-next-line no-undef
       applyMiddleware(thunk)
+      
       // other store enhancers if any
     )
   );

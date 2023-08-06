@@ -22,7 +22,8 @@ const Default = (props) => {
 
   const toggle = () => {
     setCollapsed(!collapsed);
-  };
+  }
+  const user = JSON.parse(localStorage.getItem('user'))
 
   return (
     <Layout>
@@ -40,8 +41,11 @@ const Default = (props) => {
           <Menu.Item key="/addpost" icon={<VideoCameraOutlined />}>
             <Link to="/addpost">Add Post</Link>
           </Menu.Item>
-          <Menu.Item key="/profile" icon={<UploadOutlined />}>
-            <Link to="/profile">Profile</Link>
+          <Menu.Item key="/profile" icon={<UserOutlined />}>
+            <Link to={`/profile/${user._id}`}>Profile</Link>
+          </Menu.Item>
+          <Menu.Item key="/allusers" icon={<UserOutlined />}>
+            <Link to="/allusers">Allusers</Link>
           </Menu.Item>
           <Menu.Item icon={<LogoutOutlined />}>
             <Link onClick={()=>{localStorage.removeItem(('user'), window.location.reload)}}>Logout</Link>
