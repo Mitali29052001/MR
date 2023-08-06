@@ -1,16 +1,20 @@
 const initialState = {
-    users: []
+    users : [],
 }
 
-// eslint-disable-next-line no-unused-vars
-export const usersReducer = (state = initialState, action) => {
-    switch (action.type){
-        case 'GET_USER': {
-            return {
-               
-            }   
+export const usersReducer = (state=initialState , action)=>{
+
+    switch(action.type){
+        case 'GET_ALL_USERS' : {
+
+            return{
+              ...state,
+              users : action.payload
+            }
+
         }
-       default: return state;
-    }
-}
 
+        default : return state
+    }
+
+}

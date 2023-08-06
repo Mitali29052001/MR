@@ -1,3 +1,24 @@
 .login-1 {
-    margin-top: 50px;
+    margin-top: 80px;
+}
+.bs1{
+    width: auto;
+    font-weight: 600;
+
+}
+.h1 {
+    text-align: center;
+    color: rgb(87, 11, 11);
+}
+.blur{
+    position: absolute;
+    width: 22rem;
+    height: 14rem;
+    border-radius: 50%;
+    background-color: #0386b2;
+    filter: blur(100px);
+    /* filter: invert(1); */
+  }
+.button{
+    color: #0386b2;
 }

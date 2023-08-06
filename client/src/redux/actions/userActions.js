@@ -1,35 +1,39 @@
 import axios from "axios";
 import {message} from 'antd'
-export const userRegister =(values)=>async dispatch=>{ 
-    dispatch({type:'LOADING', payload:true}) //we are using redux thunk, values receive from ui
+
+export const userRegister =(values)=>async dispatch=>{
+    
+    dispatch({type:'LOADING' , payload:true})
+
     try {
-        await axios.post('/api/users/register', values)
-        dispatch({type :'LOADING', payload:false})
+        await axios.post('/api/users/register' , values)
+        dispatch({type:'LOADING' , payload:false})
         message.success('User registered successfully')
         window.location.href='/login'
-
     } catch (error) {
         console.log(error)
-        dispatch({type :'LOADING', payload:false})
         dispatch({type:'LOADING' , payload:false})
-        message.error('User not register successfully')
-
+        message.error('Invalid Credentials')
     }
+
 }
-export const userLogin =(values)=>async dispatch=>{ 
-    dispatch({type:'LOADING', payload:true}) //we are using redux thunk, values receive from ui
+
+export const userLogin =(values)=>async dispatch=>{
+    
+    dispatch({type:'LOADING' , payload:true})
+
     try {
-        const response = await axios.post('/api/users/login', values)
-        dispatch({type :'LOADING', payload:false})
+        const response = await axios.post('/api/users/login' , values)
+        dispatch({type:'LOADING' , payload:false})
         message.success('Login success')
-        // eslint-disable-next-line no-undef
         localStorage.setItem('user' , JSON.stringify(response.data))
         window.location.href='/'
     } catch (error) {
         console.log(error)
         dispatch({type:'LOADING' , payload:false})
-        message.error('User not logged successfully')
+        message.error('Invalid credentials')
     }
+
 }
 
 export const getAllUsers = (values) =>async dispatch=>{
@@ -43,16 +47,15 @@ export const getAllUsers = (values) =>async dispatch=>{
     } catch (error) {
         console.log(error)
         dispatch({type:'LOADING' , payload:false})
-        message.error('something went wrong')
+        message.error('something wrong')
     }
 
 }
-
 export const followUser = (values) =>async dispatch=>{
     dispatch({type:'FOLLOW_LOADING' , payload:true})
 
     try {
-        const response = await axios.post('/api/users/followusers', values)
+        const response = await axios.post('/api/users/followuser', values)
         dispatch({type:'FOLLOW_LOADING' , payload:false})
         message.success('Successfully Followed')
         
@@ -61,5 +64,22 @@ export const followUser = (values) =>async dispatch=>{
         dispatch({type:'FOLLOW_LOADING' , payload:false})
         message.error('something went wrong')
     }
+    
+
+}
+export const unfollowUser = (values) =>async dispatch=>{
+    dispatch({type:'UNFOLLOW_LOADING' , payload:true})
+
+    try {
+        const response = await axios.post('/api/users/unfollowuser', values)
+        dispatch({type:'UNFOLLOW_LOADING' , payload:false})
+        message.success('Successfully Unfollowed')
+        
+    } catch (error) {
+        console.log(error)
+        dispatch({type:'UNFOLLOW_LOADING' , payload:false})
+        message.error('something went wrong')
+    }
+    
 
 }

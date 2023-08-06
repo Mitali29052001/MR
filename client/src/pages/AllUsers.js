@@ -1,50 +1,70 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Row, Input } from 'antd';
-import moment from "moment"; 
+
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Default from "../components/Default";
-import { followUser, getAllUsers } from "../redux/actions/userActions";
-const {TextArea} = Input
+import "./AllUsers.css";
+import { followUser, getAllUsers, unfollowUser } from "../redux/actions/userActions";
+import {
+    UserAddOutlined,
+    CheckOutlined,
+  } from '@ant-design/icons';
+const { TextArea } = Input;
+
 
 
 function AllUsers() {
     const { users } = useSelector(state => state.usersReducer)
     const currentUser = JSON.parse(localStorage.getItem('user'))
-    const {followLoading} = useSelector(state=>state.alertsReducer)
+    const { followLoading , unfollowLoading } = useSelector(state => state.alertsReducer)
+    const [search, setSearch]= useState('')
     const dispatch = useDispatch()
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getAllUsers())
 
-    }, [followLoading])
+    }, [followLoading , unfollowLoading])
     return (
         <Default>
             <div>
-                <Row justify={'cente'}>
-                    <Col lg={20} className='d-flex'>
-                        <Input style={{width:'70%'}}/>
+                <Row justify={'center'}>
+                    <Col lg={20} className='d-flex mt-3'>
+                        <Input style={{ width: '100%' }} value={search} onChange={(e)=>{setSearch(e.target.value)}}/>
                     </Col>
                 </Row>
-                <Row justify='center' gutter={16} className="mt-5">
-                    {users.map(user => {
+                <Row justify='center' gutter={16} className="mt-3 text-center">
+                    {users.filter(obj=>obj.username.toLowerCase().includes(search.toLowerCase())).map(user => {
                         return <>
-                        {currentUser._id !== user._id && (
-                            <Col lg={5} xs={24} className="text-left">
-                            <div className='bs1 p-2 '>
-                                {user.profilePicUrl == "" ? (
-                                    <p className="profilepic2 d-flex align-items-center">
-                                        {user.username[0]}
-                                    </p>
-                                ) : (
-                                    <img src={user.profilePicUrl} />
-                                )}
-                                <Link>{user.username}</Link>
-                                <p>{moment(user.createdAt).format('MMM DD yyyy')}</p>
-                                <Button onclick={()=>{dispatch(followUser({currentUserId : currentUser._id, receiverUserId : user._id}))}}>Follow</Button>
-                            </div>
-                        </Col>
-                        )}
+                            {currentUser._id !== user._id && (
+                                <Col lg={10} xs={24} className="text-left">
+                                    <div className='bs1 p-2 mt-4 ' style={{backgroundColor: 'white'}}>
+                                        {user.profilePicUrl == "" ? (
+                                            <p className="profilepic2 d-flex align-items-center">
+                                                {user.username[0]}
+                                            </p>
+                                        ) : (
+                                            <img src={user.profilePicUrl} />
+                                        )}
+                                        <Link>{user.username}</Link>
+                                        {user.followers.find((obj) => obj == currentUser._id) ? (
+                                            <div className="d-flex m-2">
+                                                <Button icon={<CheckOutlined />}>Following</Button>
+                                                <Button 
+                                                className="ml-3" onClick={() => { dispatch(unfollowUser({ currentUserId: currentUser._id, receiverUserId: user._id })) }} >Unfollow</Button>
+
+                                            </div>
+                                        ) : (
+                                            <div className="d-flex m-2">
+                                            <Button 
+                                            icon={<UserAddOutlined />}onClick={() => { dispatch(followUser({ currentUserId: currentUser._id, receiverUserId: user._id })) }}>Follow</Button>
+                                            </div>
+
+                                        )}
+
+                                    </div>
+                                </Col>
+                            )}
                         </>
                     })}
                 </Row>

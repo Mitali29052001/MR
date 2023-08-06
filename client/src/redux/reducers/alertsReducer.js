@@ -1,4 +1,10 @@
-const initialState = {}
+const initialState = {
+    loading:false,
+    likeorunlikeloading: false,
+    followloading: false,
+    addCommentLoading: false,
+
+}
 
 const alertsReducer = (state = initialState, action) => {
     switch (action.type){
@@ -6,12 +12,21 @@ const alertsReducer = (state = initialState, action) => {
             ...state,
             loading : action.payload
         } 
-        case 'FOLLOW_LOADING' : return{
+        case 'FOLLOW_LOADING': return{
             ...state,
-            followLoading : action.payload
+            followloading : action.payload
+        } 
+        case 'UNFOLLOW_LOADING': return{
+            ...state,
+            unfollowloading : action.payload
+        }
+        case 'ADD_COMMENT_LOADING': return{
+            ...state,
+            addCommentLoading : action.payload
         }
         default:
             return state;
+            
     }
 }
 

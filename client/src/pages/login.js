@@ -13,30 +13,34 @@ function Login() {
     }
     return (
         <div>
+            <div className="blur" style={{top: '-18%', right: '0'}}></div>
+            <div className="blur" style={{top: '36%', left: '-10rem'}}></div>
             <Row justify='center' className='login-1'>
-                <Col lg={10} xs={24}>
+                <Col lg={8} xs={15}>
                     <Form layout='vertical' className='bs1 p-3' onFinish={login}>
-                        <h3>Login</h3>
+                        <h1 className='h1'>Login</h1>
                         <hr />
-                        <Form.Item label="firstname" name="firstname" rules={[{ require: true }]}>
+                        <Form.Item label="Firstname" name="firstname" rules={[{ require: true }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item label="lastname" name="lastname" rules={[{ require: true }]}>
+                        <Form.Item label="Lastname" name="lastname" rules={[{ require: true }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item label="username" name="username" rules={[{ require: true }]}>
+                        <Form.Item label="Username" name="username" rules={[{ require: true }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item label="emailid" name="emailid" rules={[{ require: true }]}>
+                        <Form.Item label="Email" name="emailid" rules={[{ require: true }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item label="password" name="password" rules={[{ require: true }]}>
+                        <Form.Item label="Password" name="password" rules={[{ require: true }]}>
                             <Input />
                         </Form.Item>
                         
-                       
+                        <div className='button'>
                         <Button htmlType='Submit'>Login</Button>
-                        <Link to ='/register'>Click here if not yet register</Link>
+                        </div>
+                        
+                        <Link to ='/register'> Not Registered?</Link>
             </Form>
         </Col>
        </Row>

@@ -5,6 +5,7 @@ import {
   UploadOutlined,
   UserOutlined,
   VideoCameraOutlined,
+  LogoutOutlined
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme } from 'antd';
 import './default.css'
@@ -21,7 +22,8 @@ const Default = (props) => {
 
   const toggle = () => {
     setCollapsed(!collapsed);
-  };
+  }
+  const user = JSON.parse(localStorage.getItem('user'))
 
   return (
     <Layout>
@@ -40,39 +42,40 @@ const Default = (props) => {
             <Link to="/addpost">Add Post</Link>
           </Menu.Item>
           <Menu.Item key="/profile" icon={<UserOutlined />}>
-            <Link to="/profile">Profile</Link>
+            <Link to={`/profile/${user._id}`}>Profile</Link>
           </Menu.Item>
           <Menu.Item key="/allusers" icon={<UserOutlined />}>
-            <Link to="/allusers">All Users</Link>
+            <Link to="/allusers">Allusers</Link>
+          </Menu.Item>
+          <Menu.Item icon={<LogoutOutlined />}>
+            <Link onClick={() => { localStorage.removeItem(('user'), window.location.reload) }}>Logout</Link>
           </Menu.Item>
         </Menu>
       </Sider>
       <Layout>
-        <Header 
+        <Header
           style={{
-            padding: 0,
-            background: colorBgContainer, 
+            backgroundImage: 'linear-gradient(rgb(29, 71, 123), rgb(6, 174, 65))',
+
           }}
+          
         >
-          <div className='d-flex justify-content-between bs1'>
-            {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-              className: 'trigger',
-              onClick: toggle,
-            })
-            }
-            <h2>MR</h2>
-            <h4>User</h4>
-          </div>
-        </Header>
-        <Content
-          style={{
-           
-          }}
-        >
-          {props.children}
-        </Content>
-      </Layout>
+        <div className='d-flex justify-content-between bs1'>
+          <h2>MR</h2>
+          <h4>{JSON.parse(localStorage.getItem('user')).username}</h4>
+        </div>
+      </Header>
+      <div className="blur" style={{top: '80%', right: '0' }}></div>
+      <Content
+        style={{
+          
+
+        }}
+      >
+        {props.children}
+      </Content>
     </Layout>
+    </Layout >
   );
 };
 
