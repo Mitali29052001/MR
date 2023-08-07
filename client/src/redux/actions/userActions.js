@@ -55,7 +55,7 @@ export const followUser = (values) =>async dispatch=>{
     dispatch({type:'FOLLOW_LOADING' , payload:true})
 
     try {
-        const response = await axios.post('/api/users/followusers', values)
+        const response = await axios.post('/api/users/followuser', values)
         dispatch({type:'FOLLOW_LOADING' , payload:false})
         message.success('Successfully Followed')
         
@@ -65,5 +65,38 @@ export const followUser = (values) =>async dispatch=>{
         message.error('something went wrong')
     }
     
+
+}
+export const unfollowUser = (values) =>async dispatch=>{
+    dispatch({type:'UNFOLLOW_LOADING' , payload:true})
+
+    try {
+        const response = await axios.post('/api/users/unfollowuser', values)
+        dispatch({type:'UNFOLLOW_LOADING' , payload:false})
+        message.success('Successfully Unfollowed')
+        
+    } catch (error) {
+        console.log(error)
+        dispatch({type:'UNFOLLOW_LOADING' , payload:false})
+        message.error('something went wrong')
+    }
+    
+
+}
+export const editUser =(values)=>async dispatch=>{
+    
+    dispatch({type:'LOADING' , payload:true})
+
+    try {
+        const response = await axios.post('/api/users/edit' , values)
+        dispatch({type:'LOADING' , payload:false})
+        message.success('User profile edit successfully')
+        localStorage.setItem('user', JSON.stringify(response.data))
+        window.location.href = `profile/${response.data._id}`
+    } catch (error) {
+        console.log(error)
+        dispatch({type:'LOADING' , payload:false})
+        message.error('Invalid Credentials')
+    }
 
 }

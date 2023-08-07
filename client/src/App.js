@@ -16,6 +16,8 @@ import { useEffect } from 'react';
 import { getAllPosts } from './redux/actions/postAction';
 import { getAllUsers } from "./redux/actions/userActions";
 import AllUsers from './pages/AllUsers';
+import Editprofile from './pages/editprofile';
+
 
 
 function App() {
@@ -47,6 +49,9 @@ function App() {
           </Route>
           <Route exact path='/allusers' element={<PrivateRoute />}>
             <Route exact path='/allusers' element={<AllUsers />} />
+          </Route>
+          <Route exact path='/editprofile' element={<PrivateRoute />}>
+            <Route exact path='/editprofile' element={<Editprofile />} />
           </Route>
       <Route path='/login' exact Component={Login}/>
       <Route path='/register' exact Component={Register}/>
