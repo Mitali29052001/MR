@@ -54,19 +54,58 @@ export const likeorunlikepost =(values)=>async dispatch=>{
 
     }
 }
+export const editPost =(values)=>async dispatch=>{
 
+    
+
+    console.log(values)
+    dispatch({type:'LOADING' , payload:true})
+
+    try {
+        await axios.post('/api/posts/editpost' , values)
+        dispatch({type:'LOADING' , payload:false})
+        message.success('Post updated successfully')
+        
+    } catch (error) {
+        console.log(error)
+        dispatch({type:'LOADING' , payload:false})
+        message.error('something went wrong')
+    }
+
+}
+
+
+export const deletePost =(values)=>async dispatch=>{
+
+    
+
+    console.log(values)
+    dispatch({type:'LOADING' , payload:true})
+
+    try {
+        await axios.post('/api/posts/deletepost' , values)
+        dispatch({type:'LOADING' , payload:false})
+        message.success('Post deleted successfully')
+        
+    } catch (error) {
+        console.log(error)
+        dispatch({type:'LOADING' , payload:false})
+        message.error('something went wrong')
+    }
+
+}
 export const addComment =(values)=>async dispatch=>{ 
     values.userid = JSON.parse(localStorage.getItem('user'))._id.toString()
    
-    dispatch({type:'ADD_COMMENT_LOADING', payload:true}) //we are using redux thunk, values receive from ui
+    dispatch({type:'LOADING', payload:true}) //we are using redux thunk, values receive from ui
     try {
         await axios.post('/api/posts/addComment', values)
-        dispatch({type :'ADD_COMMENT_LOADING', payload:false})
+        dispatch({type :'LOADING', payload:false})
         
 
     } catch (error) {
         console.log(error)
-        dispatch({type :'ADD_COMMENT_LOADING', payload:false})
+        dispatch({type :'LOADING', payload:false})
         message.error('something went wrong')
 
     }

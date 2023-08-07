@@ -1,16 +1,10 @@
 .ant-layout-header div span svg{
-    height: 25px !important;
-    width: 25px !important;
+    height: 25px;
+    width: 25px;
     color: rgb(37, 151, 171);
   }
   .ant-layout-content{
-    min-height: 90vh !important;
+    min-height: 90vh;
+    background-image: linear-gradient(rgba(138, 167, 202, 0.436), rgb(199, 81, 81));
+
   }
-.blur{
-  position: absolute;
-  width: 22rem;
-  height: 14rem;
-  border-radius: 50%;
-  background-color: #0386b2;
-  filter: blur(100px);
-}

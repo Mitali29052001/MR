@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Default from "../components/Default";
 import "./AllUsers.css";
 import { followUser, getAllUsers, unfollowUser } from "../redux/actions/userActions";
+
 import {
     UserAddOutlined,
     CheckOutlined,
@@ -19,12 +20,15 @@ function AllUsers() {
     const currentUser = JSON.parse(localStorage.getItem('user'))
     const { followLoading , unfollowLoading } = useSelector(state => state.alertsReducer)
     const [search, setSearch]= useState('')
+    const{loading}= useSelector(state=>state.alertsReducer)
+  
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getAllUsers())
+        
 
-    }, [followLoading , unfollowLoading])
+    }, [loading])
     return (
         <Default>
             <div>
@@ -44,9 +48,9 @@ function AllUsers() {
                                                 {user.username[0]}
                                             </p>
                                         ) : (
-                                            <img src={user.profilePicUrl} />
+                                            <img src={user.profilePicUrl} height='60' width='60' />
                                         )}
-                                        <Link>{user.username}</Link>
+                                        <Link to={`/profile/${user._id}`}>{user.username}</Link>
                                         {user.followers.find((obj) => obj == currentUser._id) ? (
                                             <div className="d-flex m-2">
                                                 <Button icon={<CheckOutlined />}>Following</Button>
