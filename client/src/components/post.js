@@ -84,17 +84,18 @@ function Post({ post , postInProfilePage}) {
         </div>
         <Modal
         visible={commentVisibility}
-        title='Comments' width={600}
+        title="Comments"
         closable={false}
-        okText='Post Comment'
+        width={900}
+        okText="Add comment"
         onOk={() => {
-          dispatch(addComment({ postid: post._id, comment: comment }))
-          setCommentVisibility(false)
-
+          dispatch(addComment({ postid: post._id, comment: comment }));
+          setCommentVisibility(false);
         }}
-        onCancle={() => {
-          setCommentVisibility(false)
-        }}>
+        onCancel={() => {
+          setCommentVisibility(false);
+        }}
+      >
         <Row>
           <Col lg={11} xs={0}>
             <img src={post.image} height='300' className="w-100" />
@@ -108,12 +109,12 @@ function Post({ post , postInProfilePage}) {
                 <div className="d-flex align-items-center">
                   {post.user.profilePicUrl == "" ? (
                     <span className="profilepic1 d-flex align-items-center">
-                      {user.username[0]}
+                      {user && user.username[0]}
                     </span>
                   ) : (
                     <img src={post.user.profilePicUrl} />
                   )}
-                  <Link className='mr-2' style={{fontsize:15}}>{user.username}</Link>
+                  <Link className='mr-2' style={{fontsize:15}}>{user && user.username}</Link>
                   <p style={{fontsize:12}}>{comment.comment}</p>
                   <p style={{fontsize:10}} className='text-right'>{comment.date}</p>
 

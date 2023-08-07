@@ -46,7 +46,7 @@ function Profile() {
                 <div className='text-left'>
                   <p>{user && user.username}</p>
                   
-                  {presentuser._id == userid && (<Button><Link to ='/editprofile'>Edit Profile</Link></Button>) }
+                  {presentuser == userid && (<Button><Link to ='/editprofile'>Edit Profile</Link></Button>) }
 
                 </div>
               </div>
