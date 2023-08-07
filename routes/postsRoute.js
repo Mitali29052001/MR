@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { cloudinary } = require("../cloudinary");
 const Post = require("../models/postModel");
+const {moment}=require("moment");
 router.post("/addpost", async (req, res) => {
   try {
     const uploadResponse = await cloudinary.v2.uploader.upload(req.body.image, {
@@ -58,8 +59,8 @@ router.post("/addcomment", async (req, res) => {
 
     var comments = post.comments;
 
-    comments.push({ user: req.body.userid, data: moment().format('MM DD yyyy'), comment: req.body.comment })
-    post.comments = cpmments
+    comments.push({ user: req.body.userid, date:moment().format("MMM DD yyyy"),comment: req.body.comment })
+    post.comments = comments
 
     await Post.updateOne({ _id: req.body.postid }, post);
     res.send("Comment added successfully");

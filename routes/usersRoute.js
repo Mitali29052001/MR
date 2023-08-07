@@ -106,4 +106,36 @@ router.post("/unfollowuser", async(req, res) =>{
 
     }
 })
+router.post("/edit", async(req, res) => {
+
+    try {
+     var prevUser = await User.findOne({_id :req.body._id})
+ 
+     if(prevUser.profilePicUrl == req.body.profilePicUrl){
+ 
+          await User.updateOne({_id : req.body._id} , req.body)
+          const user = await User.findOne({_id: req.body._id})
+          res.send(user)
+     }
+     else{
+ 
+           const uploadResponse = await cloudinary.v2.uploader.upload(req.body.profilePicUrl, {
+             folder: "mr",
+             use_filename: true,
+           });
+ 
+           req.body.profilePicUrl = uploadResponse.url
+ 
+            await User.updateOne({_id : req.body._id} , req.body)
+            const user = await User.findOne({_id: req.body._id})
+            res.send(user)
+ 
+     }
+    } catch (error) {
+        console.log(error)
+        return res.status(400).json(error);
+    }
+     
+   
+ });
 module.exports = router;
