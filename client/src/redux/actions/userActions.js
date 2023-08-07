@@ -52,32 +52,32 @@ export const getAllUsers = (values) =>async dispatch=>{
 
 }
 export const followUser = (values) =>async dispatch=>{
-    dispatch({type:'FOLLOW_LOADING' , payload:true})
+    dispatch({type:'LOADING' , payload:true})
 
     try {
         const response = await axios.post('/api/users/followuser', values)
-        dispatch({type:'FOLLOW_LOADING' , payload:false})
+        dispatch({type:'LOADING' , payload:false})
         message.success('Successfully Followed')
         
     } catch (error) {
         console.log(error)
-        dispatch({type:'FOLLOW_LOADING' , payload:false})
+        dispatch({type:'LOADING' , payload:false})
         message.error('something went wrong')
     }
     
 
 }
 export const unfollowUser = (values) =>async dispatch=>{
-    dispatch({type:'UNFOLLOW_LOADING' , payload:true})
+    dispatch({type:'LOADING' , payload:true})
 
     try {
         const response = await axios.post('/api/users/unfollowuser', values)
-        dispatch({type:'UNFOLLOW_LOADING' , payload:false})
+        dispatch({type:'LOADING' , payload:false})
         message.success('Successfully Unfollowed')
         
     } catch (error) {
         console.log(error)
-        dispatch({type:'UNFOLLOW_LOADING' , payload:false})
+        dispatch({type:'LOADING' , payload:false})
         message.error('something went wrong')
     }
     

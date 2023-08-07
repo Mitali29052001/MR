@@ -1,6 +1,7 @@
 import React from 'react'
 import Default from '../components/Default'
-import {Button, Col, Row } from 'antd'
+import {Button, Col, Row, Modal } from 'antd'
+import { useState } from "react";
 import { useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import './profile.css'
@@ -21,6 +22,11 @@ function Profile() {
 
     // const usersposts = posts.filter((obj) => obj.user.id === userid);
     const usersposts = posts.filter(obj=>obj.user._id == userid);
+    // eslint-disable-next-line no-undef
+    const [followersModalDisplay, setfollowersModalDisplay] = useState(false);
+  // eslint-disable-next-line no-undef
+  const [followingModalDisplay, setfollowingModalDisplay] = useState(false);
+
     
     // const user = JSON.parse(localStorage.getItem('user'))
     
@@ -47,14 +53,18 @@ function Profile() {
               {user && (
                 <p>{user.bio=="" ? "":user.bio}</p>
               )}
-              <Button className='mr-2'>Followers: {user && user.followers.length}</Button>
-              <Button className='mr-2'>Following: {user && user.following.length}</Button>
-              
+               <Button
+                 
+                 className="mr-2" onClick={()=>{setfollowersModalDisplay(true)}} >
+                   Followers : {user && user.followers.length}
+                 </Button>
+                 <Button onClick={()=>{setfollowingModalDisplay(true)}} >Following : {user && user.following.length}</Button>
+      
               
             </div>
             </Col></Row>
             {user && user.followers.find((obj) => obj == presentuser) ||
-          user && user.privateAccount == false ||
+          
           userid == presentuser ? (
             <Row gutter={16} justify="center">
               {usersposts.map((post) => {
@@ -68,6 +78,84 @@ function Profile() {
           ) : (
             null
           )}
+          <Modal
+            title="Followers"
+            visible={followersModalDisplay}
+            closable={false}
+            onCancel={() => {
+              setfollowersModalDisplay(false);
+            }}
+            onOk={()=>{
+              setfollowersModalDisplay(false);
+            }}
+          >
+            {user && user.followers.map((obj) => {
+              const followeruser = users.find((o) => o._id == obj);
+
+              return (
+                <div className="d-flex align-items-center bs1 p-1 mt-2">
+                  {followeruser.profilePicUrl == "" ? (
+                    <span className="profilepic1 d-flex align-items-center">
+                      {followeruser.username[0]}
+                    </span>
+                  ) : (
+                    <img
+                      src={followeruser.profilePicUrl}
+                      height="35"
+                      width="35"
+                      style={{ borderRadius: "50%" }}
+                    />
+                  )}
+
+                  <div className='ml-2'>
+                      <div style={{ margin : 2}}><Link>{followeruser.username}</Link></div>
+                  </div>
+                </div>
+              );
+            })}
+          </Modal>
+       
+          
+          <Modal
+            title="Following"
+            visible={followingModalDisplay}
+            closable={false}
+            onCancel={() => {
+              setfollowingModalDisplay(false);
+            }}
+            onOk={()=>{
+              setfollowingModalDisplay(false);
+            }}
+          >
+            {user && user.following.map((obj) => {
+              const followinguser = users.find((o) => o._id == obj);
+
+              return (
+                <div className="d-flex align-items-center bs1 p-1 m-2">
+                  {followinguser.profilePicUrl == "" ? (
+                    <span className="profilepic1 d-flex align-items-center">
+                      {followinguser.username[0]}
+                    </span>
+                  ) : (
+                    <img
+                      src={followinguser.profilePicUrl}
+                      height="35"
+                      width="35"
+                      style={{ borderRadius: "50%" }}
+                    />
+                  )}
+
+                  <div className='ml-2'>
+                      <div style={{ margin : 2}}><Link>{followinguser.username}</Link></div>
+                    
+                  </div>
+                </div>
+              );
+            })}
+          </Modal>
+       
+       
+       
       </Default>
     )
 }

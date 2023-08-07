@@ -67,3 +67,31 @@ router.post("/addcomment", async (req, res) => {
     return res.status(400).json(error);
   }
 });
+router.post("/editpost", async (req, res) => {
+  try {
+    
+
+    
+
+    await Post.updateOne({_id : req.body._id} , req.body)
+
+    
+
+
+
+    res.send("Post updated successfully");
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json(error);
+  }
+});
+router.post("/deletepost", async(req, res) => {
+
+  try {
+    await Post.deleteOne({_id : req.body._id})
+    res.send('Post deleted successfully');
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+  
+});
