@@ -6,11 +6,12 @@ import {
   
   deletePost,
   editPost,
+  addComment,
   getAllPosts,
   likeorunlikepost,
 } from '../redux/actions/postAction';
 import { useDispatch, useSelector } from "react-redux";
-import { Modal,Input } from "antd";
+import { Col, Row, Modal,Input } from "antd";
 const { TextArea } = Input;
 function Post({ post , postInProfilePage}) {
   const dispatch = useDispatch();
@@ -21,8 +22,8 @@ function Post({ post , postInProfilePage}) {
   const { loading} = useSelector(
     (state) => state.alertsReducer
   );
-  const [setCommentModalVisibility] = useState(false);
-  const [editModalVisibility, setEditModalVisibility] = useState(false);
+  const [ commentVisibility, setCommentVisibility] = useState(false);
+  const [editModalVisibility,  setEditModalVisibility] = useState(false);
   const [comment, setComment] = useState("");
   const[description , setdescription] = useState(post.description)
   const { users } = useSelector((state) => state.usersReducer);
@@ -65,7 +66,7 @@ function Post({ post , postInProfilePage}) {
         <div className="d-flex align-items-center">
           <CommentOutlined
             onClick={() => {
-              setCommentModalVisibility(true);
+              setCommentVisibility(true);
             }}
           />
           <p>{post.comments.length}</p>
@@ -81,6 +82,49 @@ function Post({ post , postInProfilePage}) {
            <EditOutlined  onClick={()=>{setEditModalVisibility(true)}}/>
         </div></>)}
         </div>
+        <Modal
+        visible={commentVisibility}
+        title='Comments' width={600}
+        closable={false}
+        okText='Post Comment'
+        onOk={() => {
+          dispatch(addComment({ postid: post._id, comment: comment }))
+          setCommentVisibility(false)
+
+        }}
+        onCancle={() => {
+          setCommentVisibility(false)
+        }}>
+        <Row>
+          <Col lg={11} xs={0}>
+            <img src={post.image} height='300' className="w-100" />
+
+          </Col>
+          <Col lg={12} xs={24}>
+            <TextArea palceholder='Write your comment here' className='ml-2' value={comment} onChange={(e) => { setComment(e.target.value); }} />
+            {post.comments.map(comment => {
+              const user = users.find(obj => obj._id == comment.user)
+              return (
+                <div className="d-flex align-items-center">
+                  {post.user.profilePicUrl == "" ? (
+                    <span className="profilepic1 d-flex align-items-center">
+                      {user.username[0]}
+                    </span>
+                  ) : (
+                    <img src={post.user.profilePicUrl} />
+                  )}
+                  <Link className='mr-2' style={{fontsize:15}}>{user.username}</Link>
+                  <p style={{fontsize:12}}>{comment.comment}</p>
+                  <p style={{fontsize:10}} className='text-right'>{comment.date}</p>
+
+                </div>
+              )
+            })}
+          </Col>
+        </Row>
+
+
+      </Modal>
 
       
       <Modal title="Edit description" closable={false}

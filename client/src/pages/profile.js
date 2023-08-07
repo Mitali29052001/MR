@@ -8,7 +8,8 @@ import Post from '../components/post'
 
 
 function Profile() {
-  const { userid } = useParams();
+  const { userid} = useParams();
+  
 
   
     
@@ -19,7 +20,7 @@ function Profile() {
     const user = users.find((obj) => obj._id === userid);
 
     // const usersposts = posts.filter((obj) => obj.user.id === userid);
-    const usersposts = posts.filter(obj=>obj.user.id == useParams.userid);
+    const usersposts = posts.filter(obj=>obj.user._id == userid);
     
     // const user = JSON.parse(localStorage.getItem('user'))
     
@@ -39,7 +40,7 @@ function Profile() {
                 <div className='text-left'>
                   <p>{user && user.username}</p>
                   
-                  {presentuser == userid && (<Button><Link to ='/editprofile'>Edit Profile</Link></Button>) }
+                  {presentuser._id == userid && (<Button><Link to ='/editprofile'>Edit Profile</Link></Button>) }
 
                 </div>
               </div>
@@ -49,16 +50,24 @@ function Profile() {
               <Button className='mr-2'>Followers: {user && user.followers.length}</Button>
               <Button className='mr-2'>Following: {user && user.following.length}</Button>
               
+              
             </div>
             </Col></Row>
+            {user && user.followers.find((obj) => obj == presentuser) ||
+          user && user.privateAccount == false ||
+          userid == presentuser ? (
             <Row gutter={16} justify="center">
-              
-            {usersposts.map((post) => (
-      <Col lg={5} sm={24} xs={24} key={post.id}>
-        <Post post={post} postInProfilePage={true} />
-      </Col>
-    ))}
+              {usersposts.map((post) => {
+                return (
+                  <Col lg={5} sm={24} xs={24}>
+                    <Post post={post} postInProfilePage={true} />
+                  </Col>
+                );
+              })}
             </Row>
+          ) : (
+            null
+          )}
       </Default>
     )
 }

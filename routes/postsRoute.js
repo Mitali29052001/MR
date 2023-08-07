@@ -51,3 +51,19 @@ router.post("/likeorunlikepost", async (req, res) => {
     return res.status(400).json(error);
   }
 });
+router.post("/addcomment", async (req, res) => {
+  try {
+    const post = await Post.findOne({ _id: req.body.postid });
+
+    var comments = post.comments;
+
+    comments.push({ user: req.body.userid,comment: req.body.comment })
+    post.comments = comments
+
+    await Post.updateOne({ _id: req.body.postid }, post);
+    res.send("Comment added successfully");
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json(error);
+  }
+});
