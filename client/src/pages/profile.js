@@ -41,7 +41,7 @@ function Profile() {
                     {user.username[0]}
                   </p>
                 ) : (
-                  <img src={ user && user.profilePicUrl} />
+                  <img src={ user && user.profilePicUrl}height='35' width='35' style={{borderRadius:'50%'}}/>
                 )}
                 <div className='text-left'>
                   <p>{user && user.username}</p>

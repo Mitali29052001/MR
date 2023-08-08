@@ -9,7 +9,6 @@ function Home() {
   // eslint-disable-next-line no-unused-vars
   const {users} = useSelector(state => state.usersReducer)
   const {posts} = useSelector(state => state.postsReducer)
-
   return (
     <Default>
       <Row justify='center'>
