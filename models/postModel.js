@@ -1,29 +1,46 @@
-const mongoose = require("mongoose");
+// Import
+const mongoose = require("mongoose")
 
-const postSchema = new mongoose.Schema(
-  { 
-    description: { type: String, default: "" },
-    image: { type: String, required: true },
-    comments: [
-      {
-        user: { type: mongoose.Schema.Types.ObjectID, ref: "users" },
-        date: { type: String, required: true },
-        comment: { type: String, required: true },
-      },
-    ],
-
-    likes: [
-      {
-        user: { type: mongoose.Schema.Types.ObjectID, ref: "users" },
-        date: { type: String, required: true },
-      },
-    ],
-
-    user: { type: mongoose.Schema.Types.ObjectID, ref: "users" },
+// Creating schema
+const postSchema = new mongoose.Schema({
+  images: {
+    type: Array,
+    required: true,
+    public_id: {
+      type: String,
+      required: true,
+    },
+    secure_url: {
+      type: String,
+      required: true,
+    },
   },
-  {
-    timestamps: true,
-  }
-);
+  description: {
+    type: String,
+    maxLength: 500,
+  },
+  user: {
+    type: mongoose.Types.ObjectId,
+    ref: "user",
+  },
+  likes: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "user",
+    },
+  ],
+  comments: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "comment",
+    },
+  ],
+}, {
+  timestamps: true,
+})
 
-module.exports = mongoose.model("posts", postSchema)
+// Creating model
+const postModel = mongoose.model("posts", postSchema, "post_collection")
+
+// Export
+module.exports = postModel

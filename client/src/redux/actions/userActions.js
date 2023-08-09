@@ -6,10 +6,14 @@ export const userRegister =(values)=>async dispatch=>{
     dispatch({type:'LOADING' , payload:true})
 
     try {
-        await axios.post('/api/users/register' , values)
-        dispatch({type:'LOADING' , payload:false})
+        const res = await axios.post('/api/auth/register' , values)
+        dispatch({type:'LOADING' , payload: false, payload: {
+            token: res.values.access_token,
+            user: res.values.user
+        } })
         message.success('User registered successfully')
         window.location.href='/login'
+        
     } catch (error) {
         console.log(error)
         dispatch({type:'LOADING' , payload:false})
@@ -23,10 +27,11 @@ export const userLogin =(values)=>async dispatch=>{
     dispatch({type:'LOADING' , payload:true})
 
     try {
-        const response = await axios.post('/api/users/login' , values)
-        dispatch({type:'LOADING' , payload:false})
-        message.success('Login success')
-        localStorage.setItem('user' , JSON.stringify(response.data))
+        const res = await axios.post('/api/auth/login' , values)
+        dispatch({type:'LOADING' , payload: false, payload: {
+            token: res.values.access_token,
+            user: res.values.user
+        } })
         window.location.href='/'
     } catch (error) {
         console.log(error)
@@ -35,7 +40,6 @@ export const userLogin =(values)=>async dispatch=>{
     }
 
 }
-
 export const getAllUsers = (values) =>async dispatch=>{
     dispatch({type:'LOADING' , payload:true})
 

@@ -28,7 +28,7 @@ function Register() {
                         <Form.Item label="username" name="username" rules={[{ require: true }]}>
                             <Input />
                         </Form.Item>
-                        <Form.Item label="emailid" name="emailid" rules={[{ require: true }]}>
+                        <Form.Item label="email" name="email" rules={[{ require: true }]}>
                             <Input />
                         </Form.Item>
                         <Form.Item label="password" name="password" rules={[{ require: true }]}>
