@@ -93,7 +93,7 @@ function Post({ post, postInProfilePage }) {
       </div>
 
       <Modal
-        visible={commentVisibility}
+        open={commentVisibility}
         title="Comments"
         closable={false}
         width={900}
@@ -130,7 +130,7 @@ function Post({ post, postInProfilePage }) {
 
       <Modal title="Edit description" closable={false}
         onOk={handleEditPost}
-        okText='edit' visible={editModalVisibility} onCancel={() => setEditModalVisibility(false)}>
+        okText='edit' open={editModalVisibility} onCancel={() => setEditModalVisibility(false)}>
         <Input value={description} onChange={(e) => setdescription(e.target.value)} />
       </Modal>
     </div>

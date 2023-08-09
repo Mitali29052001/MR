@@ -1,13 +1,14 @@
 // Import
 const authRoute = require("./authRoute")
-const userRoute = require("./userRoute")
-const postRoute = require("./postRoute")
+const usersRoute = require("./userRoute")
+const postsRoute = require("./postRoute")
+const CommentRoute = require("./commentRoute")
 
 
 // Export
 module.exports = {
   authRoute,
-  userRoute,
-  postRoute,
-  
+  usersRoute,
+  postsRoute,
+  CommentRoute
 }

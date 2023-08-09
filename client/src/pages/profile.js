@@ -80,7 +80,7 @@ function Profile() {
           )}
           <Modal
             title="Followers"
-            visible={followersModalDisplay}
+            open={followersModalDisplay}
             closable={false}
             onCancel={() => {
               setfollowersModalDisplay(false);
@@ -118,7 +118,7 @@ function Profile() {
           
           <Modal
             title="Following"
-            visible={followingModalDisplay}
+            open={followingModalDisplay}
             closable={false}
             onCancel={() => {
               setfollowingModalDisplay(false);

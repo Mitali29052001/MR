@@ -27,11 +27,10 @@ export const userLogin =(values)=>async dispatch=>{
     dispatch({type:'LOADING' , payload:true})
 
     try {
-        const res = await axios.post('/api/auth/login' , values)
-        dispatch({type:'LOADING' , payload: false, payload: {
-            token: res.values.access_token,
-            user: res.values.user
-        } })
+        const response = await axios.post('/api/auth/login' , values)
+        dispatch({type:'LOADING' , payload:false})
+        message.success('Login success')
+        localStorage.setItem('user' , JSON.stringify(response.data))
         window.location.href='/'
     } catch (error) {
         console.log(error)
@@ -44,7 +43,7 @@ export const getAllUsers = (values) =>async dispatch=>{
     dispatch({type:'LOADING' , payload:true})
 
     try {
-        const response = await axios.get('/api/users/getallusers')
+        const response = await axios.get('/api/users/getallusers' ,values)
         dispatch({type:'LOADING' , payload:false})
         dispatch({type:'GET_ALL_USERS' , payload:response.data})
         

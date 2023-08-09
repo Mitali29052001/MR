@@ -6,7 +6,7 @@ const users = []
 const ServerSocket = (socket) => {
   socket.on("userJoin", (user) => {
     users.push({
-      id: user._id,
+      user: user._id,
       socketId: socket.id,
     })
   })

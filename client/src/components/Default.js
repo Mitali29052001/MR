@@ -166,7 +166,7 @@ const Default = (props) => {
               </Row>
             )}
           </div>
-          {props.children}
+          {props.items}
 
         </Content >
       </Layout >

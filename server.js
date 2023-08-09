@@ -44,8 +44,8 @@ app.use(cookieparser())
 
 // Including other routes
 app.use("/api/auth", Route.authRoute)
-app.use("/api/users", Route.userRoute)
-app.use("/api/posts", Route.postRoute)
+app.use("/api/users", Route.usersRoute)
+app.use("/api/posts", Route.postsRoute)
 
 
 // Connecting database
