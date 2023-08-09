@@ -14,7 +14,7 @@ function Home() {
   return (
     <Default>
       <Row justify='center'>
-        <Col lg={12} xs={24}>
+        <Col lg={10} xs={24}>
         {posts.map(post=>{
           return <Post post={post}/>
         })}

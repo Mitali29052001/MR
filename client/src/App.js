@@ -15,7 +15,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getAllPosts } from './redux/actions/postAction';
 import { getAllUsers } from "./redux/actions/userActions";
-import AllUsers from './pages/AllUsers';
 
 
 function App() {
@@ -44,9 +43,6 @@ function App() {
           </Route>
           <Route exact path='/Addpost' element={<PrivateRoute />}>
             <Route exact path='/Addpost' element={<Addpost />} />
-          </Route>
-          <Route exact path='/allusers' element={<PrivateRoute />}>
-            <Route exact path='/allusers' element={<AllUsers />} />
           </Route>
       <Route path='/login' exact Component={Login}/>
       <Route path='/register' exact Component={Register}/>

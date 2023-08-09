@@ -1,8 +1,8 @@
-
+/* 
 
 img{
-    height: 50px !important;
-    width: 50px !important;
+    height: 50px;
+    width: 50px;
     text-transform: uppercase;
     border-radius: 50%;
     background-color: grey !important;
@@ -11,4 +11,4 @@ img{
     font-weight: bold !important;
     color: white !important;
   }
-  
+   */

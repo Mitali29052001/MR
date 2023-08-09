@@ -1,10 +1,32 @@
-.ant-layout-header div span svg{
-    height: 25px;
-    width: 25px;
-    color: rgb(37, 151, 171);
-  }
-  .ant-layout-content{
-    min-height: 90vh;
-    background-image: linear-gradient(rgba(138, 167, 202, 0.436), rgb(199, 81, 81));
+.ant-layout-header div span svg {
+  height: 25px;
+  width: 25px;
+  color: rgb(37, 151, 171);
+}
 
-  }
+.ant-layout-content {
+  min-height: 90vh;
+  background-image: linear-gradient(rgba(138, 167, 202, 0.508), rgb(199, 81, 81));
+
+}
+
+.profilepic2 {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: rgb(91, 175, 248);
+  text-align: center;
+  font-size: 30px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: rgb(212, 203, 203);
+}
+
+.search {
+  position: sticky;
+  top: 64px; /* Adjust this value based on your header height */
+  background-color: white;
+  padding: 10px;
+  z-index: 1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
