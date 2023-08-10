@@ -1,7 +1,2 @@
-.env
-package-lock.json
 node_modules
 
-# from client folder
-node_modules
-package-lock.json
