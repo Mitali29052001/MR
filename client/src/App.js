@@ -33,9 +33,6 @@ function App() {
   }, [])
   return (
     <div className="App">
-      {/* {loading && (<div className="spinner-border" role="status">
-        <span class="sr-only">Loading...</span>
-        </div>)} */}
       <BrowserRouter>
       <Routes>
           <Route exact path='/' element={<PrivateRoute />}>
@@ -67,10 +64,5 @@ export const PrivateRoute = (props) => {
     return <Outlet{...props}/>
   }else{
     return auth ? <Outlet /> : <Navigate to="/login" />;
-  }
-   // determine if authorized, from context or however you're doing it
-
-  // If authorized, return an outlet that will render child elements
-  // If not, return element that will navigate to login page
-  
+  }  
 }
