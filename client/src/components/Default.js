@@ -106,7 +106,7 @@ const Default = (props) => {
 
         >
           <div className='d-flex justify-content-between bs2 w-150'>
-            <h2>MR</h2>
+            <h2>MR_Media</h2>
             <Row justify={'center'}>
               <Col lg={30} className='d-flex mt-3'>
                 <Input style={{ width: '100%', color:'gray'}} value={search} onChange={(e) => { setSearch(e.target.value) }} placeholder='Search your friend here...'/>
