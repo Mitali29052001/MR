@@ -46,7 +46,7 @@ const Default = (props) => {
 
   useEffect(() => {
     if (searchPerformed) {
-      dispatch(getAllUsers()); // Load users only if searchPerformed is true
+      dispatch(getAllUsers()); 
     }
   }, [searchPerformed, loading]);
   const handleSearch = () => {
@@ -125,7 +125,7 @@ const Default = (props) => {
         >
 
           <div classname='search'>
-            {searchPerformed && ( // Step 2: Conditionally render based on searchPerformed
+            {searchPerformed && ( 
               <Row justify='center' gutter={10} className="mt-3 text-center">
                 {
                   users.filter(obj => obj.username.toLowerCase().includes(search.toLowerCase())).map(user => {
