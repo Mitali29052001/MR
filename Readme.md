@@ -1,5 +1,5 @@
 
-# 2MR Media (Social Media App)
+# MR Media (Social Media App)
 In this project we build frondend and backend for social media app.
 
 ## Technologies Used
