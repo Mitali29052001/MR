@@ -1,13 +1,13 @@
 
 .profilePicUrl{
-    height: 50px !important;
-    width: 50px !important;
+    height: 50px;
+    width: 50px;
     text-transform: uppercase;
     border-radius: 50%;
-    background-color: grey !important;
-    text-align: center !important;
-    font-size : 35px !important;
-    font-weight: bold !important;
-    color: white !important;
+    background-color: grey;
+    text-align: center;
+    font-size : 35px;
+    font-weight: bold;
+    color: white;
   }
   
