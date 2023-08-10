@@ -24,7 +24,7 @@
 
 .search {
   position: sticky;
-  top: 64px; /* Adjust this value based on your header height */
+  top: 64px; 
   background-color: white;
   padding: 10px;
   z-index: 1;
