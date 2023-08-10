@@ -13,7 +13,6 @@ const rootReducer = combineReducers ({
     postsReducer: postsReducer
 })
 const composeEnhancers = composeWithDevTools({
-    // Specify here name, actionsBlacklist, actionsCreators and other options
   });
   // eslint-disable-next-line no-unused-vars
   const store = createStore(
