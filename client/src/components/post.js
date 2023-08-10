@@ -93,7 +93,11 @@ function Post({ post, postInProfilePage }) {
       </div>
 
       <Modal
+<<<<<<< HEAD
         open={commentVisibility}
+=======
+        visible={commentVisibility}
+>>>>>>> 4234cce25955504b04384aff481d4ab4e2c2a903
         title="Comments"
         closable={false}
         width={900}
@@ -130,11 +134,19 @@ function Post({ post, postInProfilePage }) {
 
       <Modal title="Edit description" closable={false}
         onOk={handleEditPost}
+<<<<<<< HEAD
         okText='edit' open={editModalVisibility} onCancel={() => setEditModalVisibility(false)}>
+=======
+        okText='edit' visible={editModalVisibility} onCancel={() => setEditModalVisibility(false)}>
+>>>>>>> 4234cce25955504b04384aff481d4ab4e2c2a903
         <Input value={description} onChange={(e) => setdescription(e.target.value)} />
       </Modal>
     </div>
   );
 }
 
+<<<<<<< HEAD
 export default Post;
+=======
+export default Post;
+>>>>>>> 4234cce25955504b04384aff481d4ab4e2c2a903

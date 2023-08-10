@@ -87,10 +87,16 @@ function AddPost() {
             <Button onClick={openCamera}>Open Camera</Button>
             <Button onClick={closeCamera}>Close Camera</Button>
             <br />
+<<<<<<< HEAD
             <Form.Item name='image' label='Image' rules={image ? [] : [{required: true}]}>
 
           
                       <input
+=======
+          
+            <Form.Item name='image' label='Image' rules={[{required: true}]}>
+            <input
+>>>>>>> 4234cce25955504b04384aff481d4ab4e2c2a903
                 id='fileInput'
                 type='file'
                 style={{ display: 'none' }}

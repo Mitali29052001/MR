@@ -1,0 +1,11 @@
+.profilepic2{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: rgb(91, 175, 248);
+    text-align: center;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+}
