@@ -1,26 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-<<<<<<< HEAD
 
 import {
 
-=======
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
->>>>>>> 4234cce25955504b04384aff481d4ab4e2c2a903
   UserOutlined,
   VideoCameraOutlined,
   LogoutOutlined,
   FileSearchOutlined,
   CheckOutlined,
   UserAddOutlined,
-<<<<<<< HEAD
   SearchOutlined,
   ReloadOutlined,
-=======
->>>>>>> 4234cce25955504b04384aff481d4ab4e2c2a903
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme, Row, Col, Input } from 'antd';
 import './default.css'
@@ -47,10 +37,7 @@ const Default = (props) => {
   const { followLoading, unfollowLoading } = useSelector(state => state.alertsReducer);
   const { loading } = useSelector(state => state.alertsReducer);
   const [searchPerformed, setSearchPerformed] = useState(false);
-<<<<<<< HEAD
   
-=======
->>>>>>> 4234cce25955504b04384aff481d4ab4e2c2a903
 
   const dispatch = useDispatch();
 
@@ -99,12 +86,6 @@ const Default = (props) => {
           <Menu.Item key="/profile" icon={<UserOutlined />}>
             <Link to={`/profile/${user._id}`}>Profile</Link>
           </Menu.Item>
-<<<<<<< HEAD
-=======
-          <Menu.Item key="/allusers" icon={<FileSearchOutlined />}>
-            <Link to="/allusers">Allusers</Link>
-          </Menu.Item>
->>>>>>> 4234cce25955504b04384aff481d4ab4e2c2a903
           <Menu.Item icon={<LogoutOutlined />}>
             <Link onClick={() => { localStorage.removeItem(('user'), window.location.reload) }}>Logout</Link>
           </Menu.Item>
@@ -126,7 +107,6 @@ const Default = (props) => {
         >
           <div className='d-flex justify-content-between bs2 w-150'>
             <h2>MR</h2>
-<<<<<<< HEAD
             <Row justify={'center'}>
               <Col lg={30} className='d-flex mt-3'>
                 <Input style={{ width: '100%', color:'gray'}} value={search} onChange={(e) => { setSearch(e.target.value) }} placeholder='Search your friend here...'/>
@@ -134,8 +114,6 @@ const Default = (props) => {
                 <Button onClick={resetSearch}className= 'ml-1'><ReloadOutlined className='justyfy-content-center align-item-center'/></Button> {/* Button to reset the search */}
               </Col>
             </Row>
-=======
->>>>>>> 4234cce25955504b04384aff481d4ab4e2c2a903
             <h4>{JSON.parse(localStorage.getItem('user')).username}</h4>
           </div>
         </Header>
@@ -146,32 +124,15 @@ const Default = (props) => {
           }}
         >
 
-<<<<<<< HEAD
           <div classname='search'>
             {searchPerformed && ( // Step 2: Conditionally render based on searchPerformed
               <Row justify='center' gutter={10} className="mt-3 text-center">
-=======
-          <div>
-            <Row justify={'end'} className='search'>
-              <Col lg={10} className='d-flex mt-3'>
-                <Input style={{ width: '100%' }} value={search} onChange={(e) => { setSearch(e.target.value) }} placeholder="Enter username to search..."/>
-                <Button onClick={handleSearch} >Search</Button> {/* Button to perform the search */}
-                <Button onClick={resetSearch}>Reset</Button> {/* Button to reset the search */}
-              </Col>
-            </Row>
-            {searchPerformed && ( // Step 2: Conditionally render based on searchPerformed
-              <Row justify='end' gutter={10} className="mt-3 text-center">
->>>>>>> 4234cce25955504b04384aff481d4ab4e2c2a903
                 {
                   users.filter(obj => obj.username.toLowerCase().includes(search.toLowerCase())).map(user => {
                     return <>
                       {currentUser._id !== user._id && (
                         <Col lg={10} xs={24} className="text-left">
-<<<<<<< HEAD
                           <div className='bs1 p-2 mt-4 ' style={{ backgroundImage: 'linear-gradient(rgba(138, 167, 202, 0.436), rgb(199, 81, 81))' }}>
-=======
-                          <div className='bs1 p-2 mt-4 ' style={{ backgroundColor: 'gray' }}>
->>>>>>> 4234cce25955504b04384aff481d4ab4e2c2a903
                             {user.profilePicUrl == "" ? (
                               <p className="profilepic2 d-flex align-items-center color-white">
                                 {user.username[0]}
