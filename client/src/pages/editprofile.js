@@ -16,7 +16,7 @@ function Editprofile() {
     const reader = new FileReader(file)
     reader.readAsDataURL(file)
     reader.onloadend=()=>{              
-           // eslint-disable-next-line no-undef
+  
            setProfilePicUrl(reader.result)
     }
 }
