@@ -1,0 +1,74 @@
+/* Post.css */
+
+.bs1 {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin-top: 20px;
+  background-image: linear-gradient(rgba(138, 167, 202, 0.436), rgb(199, 81, 81));
+
+}
+
+.profile-pic1 {
+  padding: 10px;
+  font-weight: bold;
+  font-size: 25px;
+  background-color: grey;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  color: white;
+  text-align: center;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+}
+
+.username {
+  margin-left: 10px;
+  color: blue;
+  font-size: 15px;
+}
+
+.post-image {
+  width: 100%;
+  height: 500px;
+  margin-top: 10px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-description {
+  color: blue;
+  margin: 5px;
+  font-size: 15px;
+}
+
+.interactions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.like-icon {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.like-icon.liked {
+  color: red;
+}
+
+.comment-section {
+  margin-left: 10px;
+}
+
+.comment-section p {
+  margin: 0;
+  margin-left: 5px;
+}
